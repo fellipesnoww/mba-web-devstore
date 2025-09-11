@@ -8,8 +8,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "devstore",
-  description: "Projeto de e-commerce com Next.js, TypeScript e Tailwind CSS",
+  title: {
+    template: '%s | devstore',
+    default: 'devstore',
+  },
 };
 
 export default function RootLayout({
