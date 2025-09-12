@@ -22,11 +22,20 @@ async function getProduct(slug: string): Promise<Product> {
   return product
 }
 
+export async function generateStaticParams() {
+  const response = await api('/products/featured');
+  const products: Product[] = await response.json();
+
+  return products.map(product => {
+    return { slug: product.slug }
+  });
+}
+
 export async function generateMetadata({ params }: ProductProps): Promise<Metadata> {
   const { slug } = await params
   const product = await getProduct(slug)
   return {
-      title: product.title,
+    title: product.title,
   }
 }
 
